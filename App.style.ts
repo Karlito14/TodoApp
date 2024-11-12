@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
   body: {
     flex: 5,
     paddingHorizontal: 10,
-
   },
   footer: {
     height: 70,

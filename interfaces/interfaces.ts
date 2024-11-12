@@ -1,7 +1,15 @@
 interface Todo {
-  id: number;
+  id: string;
   title: string;
   done: boolean;
 }
 
-export { Todo };
+interface ITodo {
+  todo: Todo;
+}
+
+interface ITodoList {
+  todoList: Todo[];
+}
+
+export { Todo, ITodoList, ITodo };

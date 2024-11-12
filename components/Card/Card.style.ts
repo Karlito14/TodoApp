@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 115,
+    marginVertical: 8,
+    marginHorizontal: 5,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

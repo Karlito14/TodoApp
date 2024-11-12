@@ -1,10 +1,6 @@
 import { Image, Text, TouchableOpacity } from 'react-native';
 import { styles } from './Card.style';
-import { Todo } from 'interfaces/interfaces';
-
-interface ITodo {
-  todo: Todo;
-}
+import { ITodo } from '@interfaces/interfaces';
 
 export const Card = ({ todo }: ITodo) => {
   return (
@@ -12,7 +8,7 @@ export const Card = ({ todo }: ITodo) => {
       <Text
         style={[
           styles.title,
-          todo.done ? { textDecorationLine: 'line-through' } : null,
+          todo.done && { textDecorationLine: 'line-through' },
         ]}
       >
         {todo.title}
