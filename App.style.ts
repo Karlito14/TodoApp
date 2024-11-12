@@ -7,9 +7,12 @@ export const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
+    paddingHorizontal: 10,
   },
   body: {
     flex: 5,
+    paddingHorizontal: 10,
+
   },
   footer: {
     height: 70,
