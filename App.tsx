@@ -9,13 +9,23 @@ const TODO_LIST: Todo[] = [
   { id: '1', title: 'Sortir le chien', done: false },
   { id: '2', title: 'Acheter le pain', done: false },
   { id: '3', title: 'Laver la votiure', done: false },
-  { id: '4', title: 'Sortir le chien', done: false },
-  { id: '5', title: 'Acheter le pain', done: false },
-  { id: '6', title: 'Laver la votiure', done: false },
+  { id: '4', title: 'Faire les courses', done: false },
 ];
 
 export default function App() {
   const [todoList, setTodoList] = useState(TODO_LIST);
+
+  const updateTodo = (todo: Todo) => {
+    const updatedTodo = { ...todo, done: !todo.done };
+
+    const todoIndex = todoList.findIndex((item) => item.id === updatedTodo.id);
+
+    const updatedTodoList = [...todoList];
+    updatedTodoList[todoIndex] = updatedTodo;
+
+    setTodoList(updatedTodoList);
+  };
+
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -23,7 +33,7 @@ export default function App() {
           <Header />
         </View>
         <View style={styles.body}>
-          <CardList todoList={todoList} />
+          <CardList todoList={todoList} onPress={updateTodo} />
         </View>
       </SafeAreaView>
       <View style={styles.footer}>
