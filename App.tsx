@@ -39,7 +39,7 @@ export default function App() {
         </View>
       </SafeAreaView>
       <View style={styles.footer}>
-        <Footer state={stateSelected} updateState={setStateSelected} />
+        <Footer state={stateSelected} updateState={setStateSelected} todoList={todoList} />
       </View>
     </>
   );

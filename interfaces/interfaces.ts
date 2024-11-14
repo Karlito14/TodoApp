@@ -14,9 +14,16 @@ interface ITodoList {
   onPress: (todo: Todo) => void;
 }
 
-interface IState {
+interface IStates {
   state: string;
   updateState: (state: string) => void;
+  todoList: Todo[];
 }
 
-export { Todo, ITodoList, ITodo, IState };
+enum EnumStates {
+  all = 'All',
+  inProgress = 'In Progress',
+  done= 'Done'
+}
+
+export { Todo, ITodoList, ITodo, IStates, EnumStates };
