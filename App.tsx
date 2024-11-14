@@ -4,6 +4,7 @@ import { styles } from './App.style';
 import { Header } from '@components/Header/Header';
 import { CardList } from '@components/CardList/CardList';
 import { Todo } from '@interfaces/interfaces';
+import { Footer } from '@components/Footer/Footer';
 
 const TODO_LIST: Todo[] = [
   { id: '1', title: 'Sortir le chien', done: false },
@@ -14,6 +15,7 @@ const TODO_LIST: Todo[] = [
 
 export default function App() {
   const [todoList, setTodoList] = useState(TODO_LIST);
+  const [stateSelected, setStateSelected] = useState('All');
 
   const updateTodo = (todo: Todo) => {
     const updatedTodo = { ...todo, done: !todo.done };
@@ -37,7 +39,7 @@ export default function App() {
         </View>
       </SafeAreaView>
       <View style={styles.footer}>
-        <Text>Footer</Text>
+        <Footer state={stateSelected} updateState={setStateSelected} />
       </View>
     </>
   );

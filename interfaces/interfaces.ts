@@ -14,4 +14,9 @@ interface ITodoList {
   onPress: (todo: Todo) => void;
 }
 
-export { Todo, ITodoList, ITodo };
+interface IState {
+  state: string;
+  updateState: (state: string) => void;
+}
+
+export { Todo, ITodoList, ITodo, IState };
