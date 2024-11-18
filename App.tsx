@@ -47,7 +47,6 @@ export default function App() {
     Alert.alert('Delete this todo ?', todo.title, [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
       {
@@ -63,12 +62,18 @@ export default function App() {
     ]);
   };
 
-  const addTodo = () => {};
+  const addTodo = (todo: Todo) => {
+    setTodoList([...todoList, todo]);
+  };
 
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Dialog modalVisible={modalVisible} />
+        <Dialog
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          addTodo={addTodo}
+        />
         <View style={styles.header}>
           <Header />
         </View>

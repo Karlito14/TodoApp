@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 7,
-    padding: 35,
+    padding: 30,
+    paddingBottom: 20,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -28,23 +29,22 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 7,
   },
-  buttonsContainer: {
+  error: {
+    color: '#b10303',
+    fontSize: 16
+  },
+  buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-  cancelBtn: {
-    backgroundColor: '#d5294d',
-    marginRight: 10,
-    borderRadius: 7,
-  },
   addBtn: {
-    backgroundColor: '#2f76e5',
+    backgroundColor: '#c2daff',
     borderRadius: 7,
   },
-  txtBtns: {
+  txtBtn: {
     fontSize: 16,
-    padding: 8,
-    color: 'white',
+    padding: 10,
+    color: '#2f76e5',
     fontWeight: 'bold',
   },
 });

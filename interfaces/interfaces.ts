@@ -29,8 +29,13 @@ interface IStates {
 }
 
 interface IAdd {
-  onPress: (boolean: boolean) => void
+  onPress: (value: boolean) => void;
 }
 
+interface IDialog {
+  modalVisible: boolean;
+  setModalVisible: (value: boolean) => void;
+  addTodo: (todo: Todo) => void;
+}
 
-export { Todo, ITodoList, ITodo, IStates, IAdd, EnumStates };
+export { Todo, ITodoList, ITodo, IStates, IAdd, IDialog, EnumStates };
