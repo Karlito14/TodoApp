@@ -1,21 +1,25 @@
-import { Alert, SafeAreaView, View } from 'react-native';
+import { Alert, Modal, SafeAreaView, View } from 'react-native';
 import { useState } from 'react';
 import { styles } from './App.style';
 import { Header } from '@components/Header/Header';
 import { CardList } from '@components/CardList/CardList';
 import { EnumStates, Todo } from '@interfaces/interfaces';
 import { Footer } from '@components/Footer/Footer';
+import { ButtonAdd } from '@components/ButtonAdd/ButtonAdd';
+import { Dialog } from '@components/Dialog/Dialog';
 
 const TODO_LIST: Todo[] = [
   { id: '1', title: 'Sortir le chien', done: false },
   { id: '2', title: 'Acheter le pain', done: false },
   { id: '3', title: 'Laver la voiture', done: false },
   { id: '4', title: 'Faire les courses', done: false },
+  { id: '5', title: 'Piscine', done: false },
 ];
 
 export default function App() {
   const [todoList, setTodoList] = useState(TODO_LIST);
   const [stateSelected, setStateSelected] = useState(EnumStates.all);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const filteredList = () => {
     switch (stateSelected) {
@@ -59,9 +63,12 @@ export default function App() {
     ]);
   };
 
+  const addTodo = () => {};
+
   return (
     <>
       <SafeAreaView style={styles.container}>
+        <Dialog modalVisible={modalVisible} />
         <View style={styles.header}>
           <Header />
         </View>
@@ -72,6 +79,7 @@ export default function App() {
             onLongPress={openAlert}
           />
         </View>
+        <ButtonAdd onPress={setModalVisible} />
       </SafeAreaView>
       <View style={styles.footer}>
         <Footer

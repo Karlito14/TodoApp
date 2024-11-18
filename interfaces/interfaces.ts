@@ -28,5 +28,9 @@ interface IStates {
   todoList: Todo[];
 }
 
+interface IAdd {
+  onPress: (boolean: boolean) => void
+}
 
-export { Todo, ITodoList, ITodo, IStates, EnumStates };
+
+export { Todo, ITodoList, ITodo, IStates, IAdd, EnumStates };
