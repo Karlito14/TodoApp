@@ -1,3 +1,9 @@
+enum EnumStates {
+  all = 'All',
+  inProgress = 'In Progress',
+  done = 'Done',
+}
+
 interface Todo {
   id: string;
   title: string;
@@ -15,15 +21,10 @@ interface ITodoList {
 }
 
 interface IStates {
-  state: string;
-  updateState: (state: string) => void;
+  state: EnumStates;
+  updateState: (state: EnumStates) => void;
   todoList: Todo[];
 }
 
-enum EnumStates {
-  all = 'All',
-  inProgress = 'In Progress',
-  done= 'Done'
-}
 
 export { Todo, ITodoList, ITodo, IStates, EnumStates };

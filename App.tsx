@@ -1,21 +1,32 @@
-import { Text, SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import { useState } from 'react';
 import { styles } from './App.style';
 import { Header } from '@components/Header/Header';
 import { CardList } from '@components/CardList/CardList';
-import { Todo } from '@interfaces/interfaces';
+import { EnumStates, Todo } from '@interfaces/interfaces';
 import { Footer } from '@components/Footer/Footer';
 
 const TODO_LIST: Todo[] = [
   { id: '1', title: 'Sortir le chien', done: false },
   { id: '2', title: 'Acheter le pain', done: false },
-  { id: '3', title: 'Laver la votiure', done: false },
+  { id: '3', title: 'Laver la voiture', done: false },
   { id: '4', title: 'Faire les courses', done: false },
 ];
 
 export default function App() {
   const [todoList, setTodoList] = useState(TODO_LIST);
-  const [stateSelected, setStateSelected] = useState('All');
+  const [stateSelected, setStateSelected] = useState(EnumStates.all);
+
+  const filteredList = () => {
+    switch (stateSelected) {
+      case EnumStates.all:
+        return todoList;
+      case EnumStates.inProgress:
+        return todoList.filter((item) => !item.done);
+      case EnumStates.done:
+        return todoList.filter((item) => item.done);
+    }
+  };
 
   const updateTodo = (todo: Todo) => {
     const updatedTodo = { ...todo, done: !todo.done };
@@ -35,11 +46,15 @@ export default function App() {
           <Header />
         </View>
         <View style={styles.body}>
-          <CardList todoList={todoList} onPress={updateTodo} />
+          <CardList todoList={filteredList()} onPress={updateTodo} />
         </View>
       </SafeAreaView>
       <View style={styles.footer}>
-        <Footer state={stateSelected} updateState={setStateSelected} todoList={todoList} />
+        <Footer
+          state={stateSelected}
+          updateState={setStateSelected}
+          todoList={todoList}
+        />
       </View>
     </>
   );
