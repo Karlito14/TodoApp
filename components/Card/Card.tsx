@@ -2,9 +2,9 @@ import { Image, Text, TouchableOpacity } from 'react-native';
 import { styles } from './Card.style';
 import { ITodo } from '@interfaces/interfaces';
 
-export const Card = ({ todo, onPress }: ITodo) => {
+export const Card = ({ todo, onPress, onLongPress }: ITodo) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={() => onPress(todo)}>
+    <TouchableOpacity style={styles.card} onPress={() => onPress(todo)} onLongPress={() => onLongPress(todo)}>
       <Text
         style={[
           styles.title,

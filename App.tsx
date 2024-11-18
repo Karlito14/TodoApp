@@ -1,4 +1,4 @@
-import { SafeAreaView, View } from 'react-native';
+import { Alert, SafeAreaView, View } from 'react-native';
 import { useState } from 'react';
 import { styles } from './App.style';
 import { Header } from '@components/Header/Header';
@@ -39,6 +39,26 @@ export default function App() {
     setTodoList(updatedTodoList);
   };
 
+  const openAlert = (todo: Todo) => {
+    Alert.alert('Delete this todo ?', todo.title, [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'Delete',
+        onPress: () => {
+          const updatedTodoList = todoList.filter(
+            (item) => item.id !== todo.id
+          );
+          setTodoList(updatedTodoList);
+        },
+        style: 'destructive',
+      },
+    ]);
+  };
+
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -46,7 +66,11 @@ export default function App() {
           <Header />
         </View>
         <View style={styles.body}>
-          <CardList todoList={filteredList()} onPress={updateTodo} />
+          <CardList
+            todoList={filteredList()}
+            onPress={updateTodo}
+            onLongPress={openAlert}
+          />
         </View>
       </SafeAreaView>
       <View style={styles.footer}>
