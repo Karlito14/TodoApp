@@ -14,11 +14,11 @@ export const Dialog = (props: { modalVisible: boolean }) => {
         <View style={styles.container}>
           <TextInput style={styles.input} placeholder="Add a New Todo" />
           <View style={styles.buttonsContainer}>
-            <TouchableOpacity>
-                <Text>Cancel</Text>
+            <TouchableOpacity style={styles.cancelBtn}>
+                <Text style={styles.txtBtns}>Cancel</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-                <Text>Add +</Text>
+            <TouchableOpacity style={styles.addBtn}>
+                <Text style={styles.txtBtns}>Add +</Text>
             </TouchableOpacity>
           </View>
         </View>
