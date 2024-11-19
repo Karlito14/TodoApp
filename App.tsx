@@ -1,12 +1,13 @@
-import { Alert, Modal, SafeAreaView, View } from 'react-native';
-import { useState } from 'react';
+import { Alert, SafeAreaView, View } from 'react-native';
+import { useEffect, useState } from 'react';
 import { styles } from './App.style';
 import { Header } from '@components/Header/Header';
 import { CardList } from '@components/CardList/CardList';
-import { EnumStates, Todo } from '@interfaces/interfaces';
 import { Footer } from '@components/Footer/Footer';
 import { ButtonAdd } from '@components/ButtonAdd/ButtonAdd';
 import { Dialog } from '@components/Dialog/Dialog';
+import { EnumStates, Todo } from '@interfaces/interfaces';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TODO_LIST: Todo[] = [
   { id: '1', title: 'Sortir le chien', done: false },
@@ -17,9 +18,37 @@ const TODO_LIST: Todo[] = [
 ];
 
 export default function App() {
-  const [todoList, setTodoList] = useState(TODO_LIST);
+  const [todoList, setTodoList] = useState<Todo[]>([]);
   const [stateSelected, setStateSelected] = useState(EnumStates.all);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('myData');
+      if (jsonValue !== null) {
+        setTodoList(JSON.parse(jsonValue));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const storeData = async (value: Todo[]) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('myData', jsonValue);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    storeData(todoList)
+  },[todoList])
 
   const filteredList = () => {
     switch (stateSelected) {
@@ -63,7 +92,8 @@ export default function App() {
   };
 
   const addTodo = (todo: Todo) => {
-    setTodoList([...todoList, todo]);
+    const updatedTodoList = [...todoList, todo];
+    setTodoList(updatedTodoList);
   };
 
   return (
